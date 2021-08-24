@@ -17,8 +17,11 @@ set xrange ["2020-01-01" : "2022-01-01"]
 set ylabel "No. of reported cases"
 set logscale y
 set logscale y2
+set yrange [ 0: 100000000]
+
 
 set datafile separator ','
+
 plot '../epidemic/cases_malaysia.csv' using 1:2 with points t "Daily reported cases", \
 	'../epidemic/cases_malaysia.csv' using 1:2 smooth sbezier t "Daily reported cases (curve smoothed)" lw 2, \
     '../epidemic/cases_malaysia.csv' using 1:2 smooth cumulative t "Cumulative total of reported cases" lc "red"
