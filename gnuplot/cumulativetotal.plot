@@ -5,13 +5,20 @@ set output 'cumulative_total.png'
 set title "cumulative total"
 
 set key autotitle columnhead
+set autoscale
+
+set xlabel "Date"
 set xdata time
 set timefmt "%Y-%m-%d"
-#set xrange ["2021-01-01" : *]
+
+# data ranges select
+set xrange ["2020-01-01" : "2022-01-01"]
+
+set ylabel "No. of reported cases"
 set logscale y
 #set logscale y2
 
 set datafile separator ','
-plot '../epidemic/cases_malaysia.csv' using 1:2 with points, \
-	'../epidemic/cases_malaysia.csv' using 1:2 smooth sbezier t "bezier" lw 2, \
-    '../epidemic/cases_malaysia.csv' using 1:2 smooth cumulative t 'smooth cumulative' lc "red"
+plot '../epidemic/cases_malaysia.csv' using 1:2 with points t "Daily reported cases", \
+	'../epidemic/cases_malaysia.csv' using 1:2 smooth sbezier t "Daily reported cases (curve smoothed)" lw 2, \
+    '../epidemic/cases_malaysia.csv' using 1:2 smooth cumulative t "Cumulative total of reported cases" lc "red"
